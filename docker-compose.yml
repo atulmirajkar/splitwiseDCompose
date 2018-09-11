@@ -1,0 +1,22 @@
+version: "3"
+services:
+  backend:
+    build: ./splitwiseExpenseAPI
+    image: splitwiseexpenseapi1.0
+    container_name: splitwiseexpenseapi
+    expose: 
+    - "9093"
+    ports: 
+    - "9093:9093"
+    volumes:
+    - ./data:/data
+  frontend:
+    build: ./splitwise
+    image: splitwiseshiny1.0
+    container_name: splitwiseshiny
+    depends_on:
+    - backend
+    ports:
+    - "3838:3838"
+    expose:
+    - "3838"
